@@ -1,9 +1,27 @@
+
 import React from 'react';
 import { Mail } from 'lucide-react';
+
 const Footer: React.FC = () => {
-  return <footer className="bg-gray-50 border-t py-12 mt-20">
+  return (
+    <footer className="bg-gray-50 border-t py-12 mt-20">
       <div className="max-w-5xl mx-auto px-6">
-        
+        <div className="flex flex-col items-center md:flex-row md:justify-between mb-8">
+          <div className="flex items-center mb-6 md:mb-0">
+            <Mail className="h-6 w-6 text-purple-500 mr-2" />
+            <h3 className="text-xl font-bold bg-clip-text text-transparent bg-purple-gradient">Gmail Validator</h3>
+          </div>
+          
+          <nav>
+            <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+              <li><a href="#features" className="text-sm text-gray-600 hover:text-purple-500 transition-colors">Features</a></li>
+              <li><a href="#validation" className="text-sm text-gray-600 hover:text-purple-500 transition-colors">Validation</a></li>
+              <li><a href="#about" className="text-sm text-gray-600 hover:text-purple-500 transition-colors">About</a></li>
+              <li><a href="#privacy" className="text-sm text-gray-600 hover:text-purple-500 transition-colors">Privacy</a></li>
+              <li><a href="#terms" className="text-sm text-gray-600 hover:text-purple-500 transition-colors">Terms</a></li>
+            </ul>
+          </nav>
+        </div>
         
         <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row md:justify-between items-center">
           <p className="text-gray-500 text-sm mb-4 md:mb-0">© {new Date().getFullYear()} Gmail Validator. All rights reserved.</p>
@@ -24,6 +42,8 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
+
 export default Footer;

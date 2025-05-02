@@ -1,24 +1,31 @@
+
 import React from 'react';
 import { Mail } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Link } from 'react-router-dom';
+
 interface HeaderProps {
   className?: string;
 }
+
 const Header: React.FC<HeaderProps> = ({
   className
 }) => {
   return <header className={cn("w-full py-4 px-6 flex items-center justify-between", className)}>
-      <div className="flex items-center space-x-2">
+      <Link to="/" className="flex items-center space-x-2">
         <Mail className="h-6 w-6 text-purple-500" />
-        <h2 className="text-xl font-bold bg-clip-text text-transparent bg-purple-gradient">Gmail Validator</h2>
-      </div>
+        <h2 className="text-xl font-bold bg-clip-text text-transparent bg-purple-gradient">MailCheck</h2>
+      </Link>
       <nav>
         <ul className="flex items-center space-x-6">
-          
-          
-          
+          <li>
+            <Link to="/learn" className="text-gray-600 hover:text-purple-500 font-medium">
+              Learn
+            </Link>
+          </li>
         </ul>
       </nav>
     </header>;
 };
+
 export default Header;

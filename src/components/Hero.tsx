@@ -1,8 +1,9 @@
 
 import React from 'react';
-import { Mail, Check, X } from 'lucide-react';
+import { Mail, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { Link } from 'react-router-dom';
 
 interface HeroProps {
   className?: string;
@@ -24,10 +25,10 @@ const Hero: React.FC<HeroProps> = ({ className, onScrollToValidate }) => {
         
         <h1 className="mb-4 font-bold animate-fade-in">
           <span className="bg-clip-text text-transparent bg-purple-gradient">
-            Validate Gmail Addresses
+            MailCheck
           </span>
           <br />
-          <span>Simply & Quickly</span>
+          <span>Fast Gmail Validation</span>
         </h1>
         
         <p className="mb-8 text-lg text-gray-600 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '100ms' }}>
@@ -47,6 +48,8 @@ const Hero: React.FC<HeroProps> = ({ className, onScrollToValidate }) => {
             variant="outline" 
             size="lg" 
             className="border-purple-300 text-purple-500 hover:bg-purple-50 rounded-full px-8"
+            as={Link}
+            to="/learn"
           >
             Learn More
           </Button>

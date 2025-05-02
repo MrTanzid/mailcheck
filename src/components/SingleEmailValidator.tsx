@@ -22,18 +22,32 @@ const SingleEmailValidator: React.FC = () => {
     
     // Simulating validation with timeout
     setTimeout(() => {
+      // Enhanced Gmail validation
       const isGmail = email.toLowerCase().endsWith('@gmail.com');
-      const isValidFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
       
-      if (!isValidFormat) {
+      // Check for valid Gmail format:
+      // - Must end with @gmail.com
+      // - Username must be 6-30 characters
+      // - Username can only contain letters, numbers, periods, and underscores
+      // - Username cannot start or end with a period
+      // - No consecutive periods
+      const gmailRegex = /^[a-zA-Z0-9](([a-zA-Z0-9]|[._](?![._]))){4,28}[a-zA-Z0-9]@gmail\.com$/;
+      const isValidFormat = gmailRegex.test(email.toLowerCase());
+      
+      if (!email.includes('@')) {
         setResult({
           valid: false,
-          message: 'Invalid email format'
+          message: 'Missing @ symbol in email'
         });
       } else if (!isGmail) {
         setResult({
           valid: false,
           message: 'Not a Gmail address'
+        });
+      } else if (!isValidFormat) {
+        setResult({
+          valid: false,
+          message: 'Invalid Gmail format'
         });
       } else {
         setResult({

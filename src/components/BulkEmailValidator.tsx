@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Mail, Loader, Check, X, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -20,13 +19,57 @@ const BulkEmailValidator: React.FC = () => {
   const [progress, setProgress] = useState(0);
   const [results, setResults] = useState<ValidationResult[]>([]);
 
+  // Helper function to validate a single Gmail address
+  const validateGmailAddress = (email: string): ValidationResult => {
+    const isGmail = email.toLowerCase().endsWith('@gmail.com');
+    
+    // Enhanced Gmail validation regex
+    // - Must end with @gmail.com
+    // - Username must be 6-30 characters
+    // - Username can only contain letters, numbers, periods, and underscores
+    // - Username cannot start or end with a period
+    // - No consecutive periods
+    const gmailRegex = /^[a-zA-Z0-9](([a-zA-Z0-9]|[._](?![._]))){4,28}[a-zA-Z0-9]@gmail\.com$/;
+    const isValidFormat = gmailRegex.test(email.toLowerCase());
+    
+    if (!email.includes('@')) {
+      return {
+        email,
+        valid: false,
+        message: 'Missing @ symbol'
+      };
+    } else if (!isGmail) {
+      return {
+        email,
+        valid: false,
+        message: 'Not Gmail'
+      };
+    } else if (!isValidFormat) {
+      return {
+        email,
+        valid: false,
+        message: 'Invalid format'
+      };
+    } else {
+      return {
+        email,
+        valid: true,
+        message: 'Valid Gmail'
+      };
+    }
+  };
+
   const validateEmails = () => {
     if (!emails.trim()) {
       toast.error('Please enter at least one email address');
       return;
     }
     
-    const emailList = emails.split(/[\n,;]/).map(e => e.trim()).filter(e => e);
+    // Split by newlines, commas, or semicolons and trim whitespace
+    const emailList = emails
+      .split(/[\n,;]/)
+      .map(e => e.trim())
+      .filter(e => e);
     
     if (emailList.length === 0) {
       toast.error('No valid email addresses found');
@@ -47,31 +90,7 @@ const BulkEmailValidator: React.FC = () => {
       
       setTimeout(() => {
         batch.forEach(email => {
-          const isGmail = email.toLowerCase().endsWith('@gmail.com');
-          const isValidFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-          
-          let result: ValidationResult;
-          
-          if (!isValidFormat) {
-            result = {
-              email,
-              valid: false,
-              message: 'Invalid format'
-            };
-          } else if (!isGmail) {
-            result = {
-              email,
-              valid: false,
-              message: 'Not Gmail'
-            };
-          } else {
-            result = {
-              email,
-              valid: true,
-              message: 'Valid Gmail'
-            };
-          }
-          
+          const result = validateGmailAddress(email);
           newResults.push(result);
         });
         

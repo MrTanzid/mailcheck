@@ -1,13 +1,10 @@
-
 import React from 'react';
 import { Mail } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
-
 interface HeaderProps {
   className?: string;
 }
-
 const Header: React.FC<HeaderProps> = ({
   className
 }) => {
@@ -19,13 +16,10 @@ const Header: React.FC<HeaderProps> = ({
       <nav>
         <ul className="flex items-center space-x-6">
           <li>
-            <Link to="/learn" className="text-gray-600 hover:text-purple-500 font-medium">
-              Learn
-            </Link>
+            
           </li>
         </ul>
       </nav>
     </header>;
 };
-
 export default Header;

@@ -127,14 +127,14 @@ const Learn = () => {
           </div>
 
           <div className="mt-12 text-center">
-            <Button 
-              as={Link}
-              to="/"
-              size="lg" 
-              className="bg-purple-500 hover:bg-purple-600 text-white rounded-full px-8"
-            >
-              Start Validating Now
-            </Button>
+            <Link to="/">
+              <Button 
+                size="lg" 
+                className="bg-purple-500 hover:bg-purple-600 text-white rounded-full px-8"
+              >
+                Start Validating Now
+              </Button>
+            </Link>
           </div>
         </div>
       </main>

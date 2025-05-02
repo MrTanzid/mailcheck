@@ -44,15 +44,15 @@ const Hero: React.FC<HeroProps> = ({ className, onScrollToValidate }) => {
           >
             Start Validating
           </Button>
-          <Button 
-            variant="outline" 
-            size="lg" 
-            className="border-purple-300 text-purple-500 hover:bg-purple-50 rounded-full px-8"
-            as={Link}
-            to="/learn"
-          >
-            Learn More
-          </Button>
+          <Link to="/learn" className="inline-block">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="border-purple-300 text-purple-500 hover:bg-purple-50 rounded-full px-8 w-full"
+            >
+              Learn More
+            </Button>
+          </Link>
         </div>
         
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
